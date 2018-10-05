@@ -13,7 +13,8 @@ var express             = require('express'),
 seedDB();
 
 //connect to mongoDB
-mongoose.connect("mongodb://localhost/bookblog",{ useNewUrlParser: true });
+//mongoose.connect("mongodb://localhost/bookblog",{ useNewUrlParser: true });
+mongoose.connect("mongodb://yanghao:yanghao1004@ds223763.mlab.com:23763/mywebsite", {useNewUrlParser: true});
 
 // app config
 app.use(methodOverride("_method"));
