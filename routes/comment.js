@@ -31,6 +31,7 @@ router.post("/", middlewareObject.isLoggedIn, function(req, res){
                     comment.save();
                     foundBlog.comments.push(comment);
                     foundBlog.save();
+                    req.flash("success", "Comment posted!");
                     res.redirect("/blogs/"+foundBlog._id);
                 }
             });
@@ -62,6 +63,7 @@ router.put("/:comment_id", middlewareObject.checkCommentOwnership, function(req,
             console.log(err);
             res.redirect("back");
         } else {
+            req.flash("success", "Comment updated!");
             res.redirect("/blogs/"+req.params.id);
         }
     });
@@ -73,6 +75,7 @@ router.delete("/:comment_id", middlewareObject.checkCommentOwnership, function(r
             console.log(err);
             res.redirect("back");
         } else {
+            req.flash("success", "Comment deleted!");
             res.redirect("/blogs/"+req.params.id);
         }
     });

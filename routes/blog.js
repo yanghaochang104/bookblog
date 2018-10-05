@@ -9,8 +9,9 @@ router.get("/", function(req, res){
         if(err){
             console.log(err);
         } else {
-            res.render("./blogs/index", {blogs:blogs, currentUser:req.user}); 
             // show index page, pass found blogs into index as 'blogs' parameter 
+            res.render("./blogs/index", {blogs:blogs, currentUser:req.user}); 
+
         }
     });
 });
@@ -37,7 +38,7 @@ router.post("/", function(req, res){
            res.render("blogs/new",{currentUser:req.user});
        } else {
             //back to index page     
-
+            req.flash("success", "New blog created!");
             res.redirect("/blogs");
        }
    });
@@ -83,6 +84,7 @@ router.put("/:id", middlewareObject.checkBlogOwnership, function(req, res){
             res.redirect("/blogs/"+ req.params.id+"/edit");
         } else {
             // if success => redirect to 'show' page of specific blog
+            req.flash("success", "Blog updated!");
             res.redirect("/blogs/"+updatedBlog._id);
         }
     });
@@ -98,6 +100,7 @@ router.delete("/:id", middlewareObject.checkBlogOwnership, function(req, res){
             res.redirect("/blogs"+req.params.id);
         } else {
         // if success => show 'index' page
+        req.flash("success", "Blog deleted!");
         res.redirect("/blogs");
         }
     }); 
