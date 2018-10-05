@@ -1,0 +1,64 @@
+<% include ../partials/header%>
+    <!--header-->
+    <div id="banner" class="jumbotron jumbotron-fluid d-flex justify-content-center align-content-center">
+        <div class= "m-auto b-0 p-2 topic rounded">
+            <h1 class="display-2 text-center text-black">  <%= blog.title %> </h1>
+        </div>
+    </div>
+    
+    <!--content area-->
+    <div class="w-100 d-flex flex-column justify-content-center">
+        <div class="row p-2 justify-content-center">
+            <img class="w-30 rounded" src="<%= blog.image %>">
+            </div>
+        <div class=" w-100 p-2">
+            <span class="float-left"><%=blog.created.toDateString()%></span>
+            <span class="float-right">created by <%=blog.author.username%></span>
+        </div>
+        <div class="w-100 p-2">
+            <p><%= blog.content%></p>
+        </div>
+        <!--comment area-->
+        <div class="container container-fluid bg-light p-auto m-auto">
+            <% blog.comments.forEach(function(comment){ %>
+            
+                <div class="container container-fluid p-2 m-2">
+                    <div class="d-inline-flex m-2 p-2">
+                        <p><strong><%=comment.author.username %></strong>-<%=comment.text%></p>
+                    </div>
+                    
+                    <%if(currentUser && comment.author.id.equals(currentUser._id)){%>
+                    <form class="d-inline-flex float-right m-2" action="/blogs/<%=blog._id%>/comments/<%=comment._id%>/edit" method="GET">
+                        <button class="btn btn-sm btn-outline-warning">編輯</button>
+                    </form>
+                    <form class="d-inline-flex float-right m-2" action="/blogs/<%=blog._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-sm btn-outline-danger">刪除</button>
+                    </form>
+                     <% } %>
+                     
+                </div>
+                
+            <% }); %>
+        </div>
+        
+        <div class="d-flex flex-row float-left">
+            
+            <%if(currentUser && blog.author.id.equals(currentUser._id)){%>
+            <form class="m-2" action = "/blogs/<%= blog._id%>/edit" method="GET">
+                <button class="btn btn-outline-warning">編輯</button>
+            </form>
+            <form class="m-2" action = "/blogs/<%= blog._id%>?_method=DELETE" method="POST">
+                <button class="btn btn-outline-danger">刪除</button>
+            </form>
+            <% } %>
+            
+            <form class="m-2" action = "/blogs/<%= blog._id%>/comments/new" method="GET">
+                <button class="btn btn-outline-info">留言</button>
+            </form>
+            <form class="m-2" action = "/blogs" method="GET">
+                <button class="btn btn-outline-primary">回首頁</button>
+            </form>
+        </div>
+    </div>
+
+<% include ../partials/footer%>

@@ -1,0 +1,24 @@
+<% include ../partials/header %>
+
+    <div id="reg_log_banner" class="jumbotron jumbotron-fluid d-flex justify-content-center align-content-center">
+        <div class= "m-auto b-0 p-2 topic d-flex flex-column rounded">
+            <h1 class="display-2 text-center text-black">登入</h1>
+            <p class="lead text-center text-black">登入或註冊以取得寫書評或留言的權限</p>
+        </div>
+    </div>
+    
+    <form class="d-flex flex-column justify-content-center w-100" action="/login" method="POST">
+        <div class="form-group" >
+            <label>帳號：</label>
+            <input class="form-control" type= "text" name="username" placeholder="username">
+        </div>
+        <div class="form-group">
+            <lbael>密碼：</label>
+            <input class="form-control" type="password" name="password" placeholder="password">
+        </div>
+        <div>
+            <button type="submit" class="btn btn-outline-success">送出</button>
+        </div>
+    </form>
+
+<% include ../partials/footer %>

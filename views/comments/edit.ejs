@@ -1,0 +1,21 @@
+<% include ../partials/header%>
+    
+            <div id="banner" class="jumbotron jumbotron-fluid d-flex justify-content-center align-content-center">
+                 <div class= "m-auto b-0 p-2 topic d-flex flex-column rounded">
+            <h1 class="display-2 text-center text-black">編輯在<< <%= blog.title %> >>的留言 </h1>
+        </div>
+    </div>
+    
+    <div class="w-100">
+        <form class="d-flex flex-column justify-content-center w-100" action="/blogs/<%= blog._id%>/comments/<%= comment._id%>?_method=PUT" method="POST">
+            <div class="form-group">
+                <lbael>內容：</label>
+                <textarea class="form-control w-100" name="comment[text]"><%=comment.text%></textarea>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-outline-success">送出</button>
+            </div>
+        </form>
+    </div>
+    
+<% include ../partials/footer%>

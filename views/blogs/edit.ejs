@@ -1,0 +1,31 @@
+<% include ../partials/header%>
+    
+            <div id="banner" class="jumbotron jumbotron-fluid d-flex justify-content-center align-content-center">
+                 <div class= "m-auto b-0 p-2 topic d-flex flex-column rounded">
+            <h1 class="display-2 text-center text-black">編輯 <%= blog.title %> </h1>
+        </div>
+    </div>
+    
+    <div class="w-100">
+        <form class="d-flex flex-column justify-content-center w-100" action="/blogs/<%= blog._id%>?_method=PUT" method="POST">
+            <div class="form-group">
+                <label>title</label>
+                <input class="form-control" type= "text" name= "blog[title]" placeholder="title" 
+                value = "<%= blog.title%>">
+            </div>
+            <div class="form-group">
+                <label>image</label>
+                <input class="form-control" type="text" name= "blog[image]" placeholder="image"
+                value="<%= blog.image%>">
+            </div>
+            <div class="form-group">
+                <lbael>content</label>
+                <textarea class="form-control" name="blog[content]" placeholder="type your content here"><%= blog.content%></textarea>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-outline-success">送出</button>
+            </div>
+        </form>
+    </div>
+    
+<% include ../partials/footer%>

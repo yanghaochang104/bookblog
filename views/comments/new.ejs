@@ -1,0 +1,25 @@
+<% include ../partials/header%>
+
+    <div id="comment_banner" class="jumbotron jumbotron-fluid d-flex justify-content-center align-content-center">
+        <div class= "m-auto b-0 p-2 topic d-flex flex-column rounded">
+            <h1 class="display-2 text-center text-black">在<< <%= blog.title%> >>留言</h1>
+        </div>
+    </div>
+    
+    <div class="w-100">
+        <form class="d-flex flex-column justify-content-center w-100" action="/blogs/<%= blog._id%>/comments" method="POST">
+            <div class="form-group" >
+                <label>姓名：</label>
+                <input class="form-control" type= "text" placeholder="<%=currentUser.username%>" disabled>
+            </div>
+            <div class="form-group">
+                <lbael>內容：</label>
+                <textarea class="form-control w-100" name="comment[text]" placeholder="type your content here"></textarea>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-outline-success">送出</button>
+            </div>
+        </form>
+    </div>
+
+<% include ../partials/footer%>
