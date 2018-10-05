@@ -10,7 +10,7 @@ var express             = require('express'),
     flash               = require('connect-flash');
     
 //clean up and reload the examples everytime server started
-//seedDB();
+seedDB();
 
 //connect to mongoDB
 mongoose.connect("mongodb://localhost/bookblog",{ useNewUrlParser: true });
