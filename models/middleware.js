@@ -8,7 +8,7 @@ var middlewareObject = {
         if(req.isAuthenticated()){
             return next();
         } else {
-            req.flash("error","please login for posting new blogs or comments !");
+            req.flash("error","Please login for posting new blogs or comments !");
             res.redirect("/login");
         }
     },
@@ -22,6 +22,7 @@ var middlewareObject = {
                     if(foundBlog.author.id.equals(req.user._id)){
                         return next();
                     } else {
+                        req.flash("error","Not permitted!");
                         res.redirect("back");
                     }
                 }
@@ -40,6 +41,7 @@ var middlewareObject = {
                     if(foundComment.author.id.equals(req.user._id)){
                         return next();
                     } else {
+                        req.flash("error", "Not permitted!")
                         res.redirect("back");
                     }
                 }
